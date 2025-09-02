@@ -1,11 +1,11 @@
-# Flashcard.AI 🧠✨
+Flashcard.AI 🧠✨
 
 Flashcard.AI is an AI-powered web application that generates smart flashcards from any text input.  
 It uses **Flask (Python)** for the backend, **Hugging Face API** for natural language processing, and a modern **frontend** for an interactive user experience.  
 
 ---
 
-## 🚀 Features
+🚀 Features
 - Generate study flashcards automatically from text input
 - AI-powered question & answer generation (Hugging Face models)
 - Simple and intuitive web interface
@@ -14,7 +14,7 @@ It uses **Flask (Python)** for the backend, **Hugging Face API** for natural lan
 
 ---
 
-## 🛠️ Tech Stack
+🛠️ Tech Stack
 - **Backend**: Python, Flask, Gunicorn  
 - **AI/ML**: Hugging Face Transformers API  
 - **Frontend**: HTML, CSS, JavaScript  
@@ -22,10 +22,10 @@ It uses **Flask (Python)** for the backend, **Hugging Face API** for natural lan
 
 ---
 
-## 📦 Installation (Local Setup)
+📦 Installation (Local Setup)
 
-1. Clone the repository
-```bash
+1. Clone the Repository
+    bash
 git clone https://github.com/keahzani/Flashcard.AI.git
 cd Flashcard.AI
 
