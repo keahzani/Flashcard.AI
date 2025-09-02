@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Study Buddy - Flashcards</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <header class="app-header">
+      <div class="header-content">
+        <div class="logo">
+          <i class="fas fa-brain"></i>
+          <h1>AI Study Buddy</h1>
+        </div>
+        <div class="subtitle">Transform your notes into interactive flashcards</div>
+      </div>
+    </header>
+    
+    <main class="main-content">
+      <section class="input-section">
+        <div class="input-group">
+          <label for="notes" class="input-label">
+            <i class="fas fa-sticky-note"></i>
+            <span>Your Study Notes</span>
+          </label>
+          <div class="textarea-wrapper">
+            <textarea 
+              id="notes" 
+              placeholder="Paste your study notes here and I'll generate interactive flashcards for you..."
+              rows="8"
+            ></textarea>
+            <div class="textarea-footer">
+              <span class="char-count">0 characters</span>
+              <button type="button" class="clear-btn" onclick="clearNotes()" title="Clear notes" aria-label="Clear all notes">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="action-section">
+          <button class="generate-btn" onclick="generateFlashcards()">
+            <i class="fas fa-magic"></i>
+            <span>Generate Flashcards</span>
+            <div class="btn-shimmer"></div>
+          </button>
+          
+          <div class="quick-tips">
+            <div class="tip-item">
+              <i class="fas fa-lightbulb"></i>
+              <span>Pro tip: Include key concepts, definitions, and important facts</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="flashcards-section" id="flashcards-section">
+        <div class="section-header">
+          <h2 class="section-title">
+            <i class="fas fa-cards-blank"></i>
+            Your Flashcards
+          </h2>
+          <div class="study-progress">
+            <div class="progress-item">
+              <span class="progress-number" id="total-cards">0</span>
+              <span class="progress-label">Total Cards</span>
+            </div>
+            <div class="progress-divider"></div>
+            <div class="progress-item">
+              <span class="progress-number" id="reviewed-cards">0</span>
+              <span class="progress-label">Reviewed</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="flashcards-container">
+          <div id="flashcards" class="flashcards-grid"></div>
+          
+          <div class="empty-state" id="empty-state">
+            <div class="empty-icon">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <h3>Ready to Study?</h3>
+            <p>Add your study notes above and click "Generate Flashcards" to get started!</p>
+          </div>
+        </div>
+        
+        <div class="study-controls" id="study-controls" style="display: none;">
+          <button class="control-btn" onclick="shuffleCards()">
+            <i class="fas fa-random"></i>
+            <span>Shuffle</span>
+          </button>
+          <button class="control-btn" onclick="resetProgress()">
+            <i class="fas fa-redo"></i>
+            <span>Reset Progress</span>
+          </button>
+          <button class="control-btn premium-btn" onclick="initiatePayment()">
+            <i class="fas fa-crown"></i>
+            <span>Download ($1)</span>
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <div class="loading-overlay" id="loading-overlay">
+      <div class="loading-content">
+        <div class="loading-spinner">
+          <div class="spinner-ring"></div>
+          <div class="spinner-ring"></div>
+          <div class="spinner-ring"></div>
+        </div>
+        <div class="loading-text">
+          <h3>Creating Your Flashcards</h3>
+          <p class="loading-message">Analyzing your notes and generating questions...</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div class="payment-modal" id="payment-modal">
+      <div class="payment-content">
+        <div class="payment-header">
+          <h3>
+            <i class="fas fa-crown"></i>
+            Premium Download
+          </h3>
+          <button class="close-modal" onclick="closePaymentModal()">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        
+        <div class="payment-body">
+          <div class="premium-features">
+            <div class="feature-item">
+              <i class="fas fa-download"></i>
+              <span>Download your flashcards as a text file</span>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-file-export"></i>
+              <span>Export in multiple formats</span>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-infinity"></i>
+              <span>Unlimited downloads for 24 hours</span>
+            </div>
+          </div>
+          
+          <div class="price-display">
+            <span class="currency">$</span>
+            <span class="amount">1.00</span>
+            <span class="period">one-time payment</span>
+          </div>
+          
+          <form id="payment-form">
+            <div class="input-group">
+              <label for="customer-email">Email Address</label>
+              <input type="email" id="customer-email" required placeholder="your@email.com">
+            </div>
+            
+            <div class="input-group">
+              <label for="customer-phone">Phone Number</label>
+              <input type="tel" id="customer-phone" required placeholder="+254700000000">
+            </div>
+            
+            <button type="submit" class="payment-btn">
+              <i class="fas fa-credit-card"></i>
+              <span>Pay $1 & Download</span>
+            </button>
+          </form>
+          
+          <div class="payment-methods">
+            <p>Secure payment powered by</p>
+            <div class="intasend-logo">
+              <strong>IntaSend</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Payment Success Modal -->
+    <div class="success-modal" id="success-modal">
+      <div class="success-content">
+        <div class="success-icon">
+          <i class="fas fa-check-circle"></i>
+        </div>
+        <h3>Payment Successful!</h3>
+        <p>Your download will start automatically</p>
+        <button class="success-btn" onclick="closeSuccessModal()">
+          Continue
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

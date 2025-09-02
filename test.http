@@ -1,0 +1,11 @@
+### Save a Flashcard
+POST http://127.0.0.1:5000/save_flashcard
+Content-Type: application/json
+
+{
+  "question": "What is AI?",
+  "answer": "Artificial Intelligence"
+}
+
+### Get Flashcards
+GET http://127.0.0.1:5000/get_flashcards

@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+ENV/
+env/
+.venv/
+
+# Environment variables
+*.env
+
+# VSCode settings (if you use VSCode)
+.vscode/
+
+# macOS / Windows junk files
+.DS_Store
+Thumbs.db
