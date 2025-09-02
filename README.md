@@ -24,7 +24,7 @@ It uses **Flask (Python)** for the backend, **Hugging Face API** for natural lan
 
 ## 📦 Installation (Local Setup)
 
-1. **Clone the repository**
+1. Clone the repository
 ```bash
 git clone https://github.com/keahzani/Flashcard.AI.git
 cd Flashcard.AI
